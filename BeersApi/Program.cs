@@ -1,4 +1,9 @@
 using BeersApi.Context;
+using BeersApi.Models;
+using BeersApi.Repositories;
+using BeersApi.Repositories.Interfaces;
+using BeersApi.Services;
+using BeersApi.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +17,12 @@ builder.Services.AddDbContext<ApplicationContext>((options) =>
 {
     options.UseSqlite(connectionString);
 },ServiceLifetime.Transient);
+
+//Add repositories
+builder.Services.AddTransient<IRepository<DrinkTypes>, DrinksTypesRepository>();
+
+//Add Services
+builder.Services.AddTransient<IBeerTypesService, BeerTypesService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

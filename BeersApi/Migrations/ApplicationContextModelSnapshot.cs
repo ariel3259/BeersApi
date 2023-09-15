@@ -17,11 +17,11 @@ namespace BeersApi.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.11");
 
-            modelBuilder.Entity("BeersApi.Models.BeerTypes", b =>
+            modelBuilder.Entity("BeersApi.Models.DrinkTypes", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("TEXT")
-                        .HasColumnName("beer_types_id");
+                        .HasColumnName("drink_types_id");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT")
@@ -42,31 +42,31 @@ namespace BeersApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("beer_types");
+                    b.ToTable("drink_types");
                 });
 
-            modelBuilder.Entity("BeersApi.Models.Beers", b =>
+            modelBuilder.Entity("BeersApi.Models.Drinks", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("TEXT")
-                        .HasColumnName("beers_id");
+                        .HasColumnName("drinks_id");
 
                     b.Property<int>("AlcoholRate")
                         .HasColumnType("INTEGER")
                         .HasColumnName("alcohol_rate");
 
-                    b.Property<Guid>("BeerTypeId")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("beer_type_id");
-
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT")
                         .HasColumnName("created_at");
 
+                    b.Property<Guid>("DrinkTypeId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("drink_type_id");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT")
-                        .HasColumnName("Name");
+                        .HasColumnName("name");
 
                     b.Property<int>("Price")
                         .HasColumnType("INTEGER")
@@ -82,25 +82,25 @@ namespace BeersApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BeerTypeId");
+                    b.HasIndex("DrinkTypeId");
 
-                    b.ToTable("beers");
+                    b.ToTable("drinks");
                 });
 
-            modelBuilder.Entity("BeersApi.Models.Beers", b =>
+            modelBuilder.Entity("BeersApi.Models.Drinks", b =>
                 {
-                    b.HasOne("BeersApi.Models.BeerTypes", "BeerTypes")
-                        .WithMany("Beers")
-                        .HasForeignKey("BeerTypeId")
+                    b.HasOne("BeersApi.Models.DrinkTypes", "DrinkType")
+                        .WithMany("Drinks")
+                        .HasForeignKey("DrinkTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("BeerTypes");
+                    b.Navigation("DrinkType");
                 });
 
-            modelBuilder.Entity("BeersApi.Models.BeerTypes", b =>
+            modelBuilder.Entity("BeersApi.Models.DrinkTypes", b =>
                 {
-                    b.Navigation("Beers");
+                    b.Navigation("Drinks");
                 });
 #pragma warning restore 612, 618
         }

@@ -3,17 +3,17 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BeersApi.Models
 {
-    [Table("beers")]
-    public class Beers: BaseEntity
+    [Table("drinks")]
+    public class Drinks: BaseEntity
     {
-        [Column("Name")]
+        [Column("name")]
         public string Name { get; set; }
         [Column("alcohol_rate")]
         public int AlcoholRate { get; set; }
         [Column("price")]
         public int Price { get; set; }
-        [Column("beer_type_id")]
-        public Guid BeerTypeId { get; set; }
-        public virtual BeerTypes? BeerTypes { get; set; }
+        [Column("drink_type_id")]
+        public Guid DrinkTypeId { get; set; }
+        public virtual DrinkTypes? DrinkType { get; set; }
     }
 }

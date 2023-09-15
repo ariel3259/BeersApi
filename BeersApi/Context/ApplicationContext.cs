@@ -7,25 +7,25 @@ namespace BeersApi.Context
 {
     public class ApplicationContext: DbContext
     {
-        public DbSet<Beers> Beers;
-        public DbSet<BeerTypes> BeerTypes;
+        public DbSet<Drinks> Drinks;
+        public DbSet<DrinkTypes> DrinkTypes;
         public ApplicationContext(DbContextOptions<ApplicationContext> options): base(options)
         {
             this.Database.EnsureCreated();
-            Beers = Set<Beers>();
-            BeerTypes = Set<BeerTypes>();
+            Drinks = Set<Drinks>();
+            DrinkTypes = Set<DrinkTypes>();
         }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            setIdName<Beers>(modelBuilder, "beers_id");
-            setIdName<BeerTypes>(modelBuilder, "beer_types_id");
+            setIdName<Drinks>(modelBuilder, "drinks_id");
+            setIdName<DrinkTypes>(modelBuilder, "drink_types_id");
 
-            modelBuilder.Entity<BeerTypes>()
-                .HasMany(x => x.Beers)
-                .WithOne(b => b.BeerTypes)
-                .HasForeignKey(b => b.BeerTypeId);
+            modelBuilder.Entity<DrinkTypes>()
+                .HasMany(x => x.Drinks)
+                .WithOne(b => b.DrinkType)
+                .HasForeignKey(b => b.DrinkTypeId);
         }
         private void setIdName<T>(ModelBuilder modelBuilder, string id) where T : BaseEntity
         {
