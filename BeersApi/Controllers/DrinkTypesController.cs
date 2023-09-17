@@ -8,8 +8,8 @@ namespace BeersApi.Controllers
     [Route("/api/drinkTypes")]
     public class DrinkTypesController: ControllerBase
     {
-        private readonly IBeerTypesService _service;
-        public DrinkTypesController(IBeerTypesService service)
+        private readonly IDrinkTypesService _service;
+        public DrinkTypesController(IDrinkTypesService service)
         {
             _service = service;
         }

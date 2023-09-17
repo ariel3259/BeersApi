@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BeersApi.Models.Abstracts
+namespace BeersApi.Models.Abstractions
 {
     public abstract class BaseEntity
     {

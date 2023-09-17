@@ -1,11 +1,11 @@
-﻿using BeersApi.Models.Abstracts;
+﻿using BeersApi.Models.Abstractions;
 
 namespace BeersApi.Repositories.Interfaces
 {
     public interface ICrudRepository<T>: IRepository<T> where T: BaseEntity
     {
-        Task<T> Save(T entity);
-        Task<T> Update(T entity);
-        Task<T> Delete(Guid id);
+        public Task<T> Save(T entity, CancellationToken cancellation = default);
+        public Task<T> Update(T entity, CancellationToken cancellation = default);
+        public Task<bool> Delete(Guid id, CancellationToken cancellation = default);
     }
 }

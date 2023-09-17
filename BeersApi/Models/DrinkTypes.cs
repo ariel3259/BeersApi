@@ -1,4 +1,4 @@
-﻿using BeersApi.Models.Abstracts;
+﻿using BeersApi.Models.Abstractions;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BeersApi.Models

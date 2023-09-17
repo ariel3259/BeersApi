@@ -2,7 +2,7 @@
 
 namespace BeersApi.Services.Interfaces
 {
-    public interface IBeerTypesService
+    public interface IDrinkTypesService
     {
         public Task<Pages<DrinkTypesResponse>> GetAll(int? offset, int? limit);
     }

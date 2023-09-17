@@ -1,5 +1,5 @@
 ﻿using BeersApi.Models;
-using BeersApi.Models.Abstracts;
+using BeersApi.Models.Abstractions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

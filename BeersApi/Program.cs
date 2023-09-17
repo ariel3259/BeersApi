@@ -19,10 +19,11 @@ builder.Services.AddDbContext<ApplicationContext>((options) =>
 },ServiceLifetime.Transient);
 
 //Add repositories
-builder.Services.AddTransient<IRepository<DrinkTypes>, DrinksTypesRepository>();
+builder.Services.AddTransient<IRepository<DrinkTypes>, DrinkTypesRepository>();
+builder.Services.AddTransient<ICrudRepository<Drinks>, DrinksCrudRepository>();
 
 //Add Services
-builder.Services.AddTransient<IBeerTypesService, BeerTypesService>();
+builder.Services.AddTransient<IDrinkTypesService, DrinkTypesService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

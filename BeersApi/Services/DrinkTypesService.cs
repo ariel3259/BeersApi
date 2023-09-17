@@ -5,11 +5,11 @@ using BeersApi.Services.Interfaces;
 
 namespace BeersApi.Services
 {
-    public class BeerTypesService : IBeerTypesService
+    public class DrinkTypesService : IDrinkTypesService
     {
         private readonly IRepository<DrinkTypes> _repository;
 
-        public BeerTypesService(IRepository<DrinkTypes> repository)
+        public DrinkTypesService(IRepository<DrinkTypes> repository)
         {
             _repository = repository;
         }
