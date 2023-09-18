@@ -9,13 +9,14 @@ namespace BeersApi.Context
     {
         public DbSet<Drinks> Drinks;
         public DbSet<DrinkTypes> DrinkTypes;
+
+        public ApplicationContext() { }
         public ApplicationContext(DbContextOptions<ApplicationContext> options): base(options)
         {
             this.Database.EnsureCreated();
             Drinks = Set<Drinks>();
             DrinkTypes = Set<DrinkTypes>();
         }
-
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

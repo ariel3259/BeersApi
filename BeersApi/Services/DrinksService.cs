@@ -2,15 +2,18 @@
 using BeersApi.Models;
 using BeersApi.Repositories.Interfaces;
 using BeersApi.Services.Interfaces;
+using System.Linq.Expressions;
 
 namespace BeersApi.Services
 {
     public class DrinksService : IDrinksService
     {
-        public ICrudRepository<Drinks> _drinksRepository { get; set; }
-        public DrinksService(ICrudRepository<Drinks> drinksRepository)
+        private readonly ICrudRepository<Drinks> _drinksRepository;
+        private readonly IRepository<DrinkTypes> _drinkTypesRepository;
+        public DrinksService(ICrudRepository<Drinks> drinksRepository, IRepository<DrinkTypes> drinkTypesRepository)
         {
             _drinksRepository = drinksRepository;
+            _drinkTypesRepository = drinkTypesRepository;
         }
 
         public async Task<bool> Delete(Guid id)
@@ -51,14 +54,51 @@ namespace BeersApi.Services
             };
         }
 
-        public Task<DrinksResponse?> Save(DrinksRequest dto)
+        public async Task<DrinksResponse?> Save(DrinksRequest dto)
         {
-            throw new NotImplementedException();
+            DrinkTypes drinkType = await _drinkTypesRepository.GetById(dto.DrinkTypeId);
+            if (drinkType == null) return null;
+            Drinks drink = new Drinks()
+            {
+                Name = dto.Name,
+                AlcoholRate = dto.AlcoholRage,
+                DrinkTypeId = dto.DrinkTypeId,
+                Price = dto.Price
+            };
+            Drinks response = await _drinksRepository.Save(drink);
+            return new DrinksResponse()
+            {
+                DrinksId = response.Id,
+                Name = response.Name,
+                AlcoholRate = response.AlcoholRate,
+                DrinkTypeId = response.DrinkTypeId,
+                Price = response.Price
+            };
         }
 
-        public Task<DrinksResponse?> Update(DrinksUpdate dto)
+        public async Task<DrinksResponse?> Update(DrinksUpdate dto, Guid id)
         {
-            throw new NotImplementedException();
+            Drinks? drink = await _drinksRepository.GetById(id);
+            if (drink == null) return null;
+            if (dto.DrinkTypeId != null)
+            {
+                DrinkTypes? drinkType = await _drinkTypesRepository.GetById((Guid)dto.DrinkTypeId);
+                if (drinkType == null) return null;
+                else drink.DrinkTypeId = dto.DrinkTypeId != drink.DrinkTypeId ? (Guid)dto.DrinkTypeId : drink.DrinkTypeId;
+            }
+            drink.AlcoholRate = dto.AlcoholRate != null && dto.AlcoholRate != drink.AlcoholRate ? (int)dto.AlcoholRate : drink.AlcoholRate;
+            drink.Price = dto.Price != null && dto.Price != drink.Price ? (int)dto.Price : drink.Price;
+            drink.Name = dto.Name != null && dto.Name != drink.Name ? (string)dto.Name : drink.Name;
+            drink.UpdatedAt = DateTime.UtcNow;
+            await _drinksRepository.Update(drink);
+            return new DrinksResponse()
+            {
+                DrinksId = drink.Id,
+                Name = drink.Name,
+                AlcoholRate = drink.AlcoholRate,
+                DrinkTypeId = drink.DrinkTypeId,
+                Price = drink.Price
+            };
         }
     }
 }

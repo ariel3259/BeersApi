@@ -7,7 +7,7 @@ namespace BeersApi.Services.Interfaces
         public Task<Pages<DrinksResponse>> GetAll(int? offset, int? limit);
         public Task<DrinksResponse?> GetOne(Guid id);
         public Task<DrinksResponse?> Save(DrinksRequest dto);
-        public Task<DrinksResponse?> Update(DrinksUpdate dto);
+        public Task<DrinksResponse?> Update(DrinksUpdate dto, Guid id);
         public Task<bool> Delete(Guid id);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using BeersApi.Dto;
+using BeersApi.Models;
 
 namespace BeersApi.Services.Interfaces
 {

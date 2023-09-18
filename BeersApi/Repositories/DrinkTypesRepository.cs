@@ -6,9 +6,10 @@ namespace BeersApi.Repositories
 {
     public class DrinkTypesRepository: Repository<DrinkTypes>
     {
+
         public DrinkTypesRepository(ApplicationContext context): base(context.DrinkTypes)
         {
-            string[] descriptions = { "Whisky", "Vodka", "Cerveza", "Gin", "Licor" };
+            /*string[] descriptions = { "Whisky", "Vodka", "Cerveza", "Gin", "Licor" };
             List<DrinkTypes> drinkTypes = descriptions
                 .Where(x => !context.DrinkTypes.Where(y => y.Description == x).Any())
                 .Select(x => new DrinkTypes()
@@ -19,7 +20,7 @@ namespace BeersApi.Repositories
             {
                 context.AddRange(drinkTypes);
                 context.SaveChanges();
-            }
+            }*/
         }
     }
 }
