@@ -18,6 +18,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyProductAttribute("BeersApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BeersApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("..\\BeersApi.End2End\\BeersApi.End2End.csproj")]
 
 // Generado por la clase WriteCodeFragment de MSBuild.
 

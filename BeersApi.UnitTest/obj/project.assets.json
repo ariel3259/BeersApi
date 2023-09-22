@@ -7816,19 +7816,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Ryzen3\\.nuget\\packages\\": {}
+    "C:\\Users\\Ariel\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Ryzen3\\Desktop\\BeersApi\\BeersApi.UnitTest\\BeersApi.UnitTest.csproj",
+      "projectUniqueName": "C:\\Users\\Ariel\\OneDrive\\Escritorio\\BeersApi\\BeersApi.UnitTest\\BeersApi.UnitTest.csproj",
       "projectName": "BeersApi.UnitTest",
-      "projectPath": "C:\\Users\\Ryzen3\\Desktop\\BeersApi\\BeersApi.UnitTest\\BeersApi.UnitTest.csproj",
-      "packagesPath": "C:\\Users\\Ryzen3\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Ryzen3\\Desktop\\BeersApi\\BeersApi.UnitTest\\obj\\",
+      "projectPath": "C:\\Users\\Ariel\\OneDrive\\Escritorio\\BeersApi\\BeersApi.UnitTest\\BeersApi.UnitTest.csproj",
+      "packagesPath": "C:\\Users\\Ariel\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Ariel\\OneDrive\\Escritorio\\BeersApi\\BeersApi.UnitTest\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Ryzen3\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Ariel\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7842,8 +7842,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\Ryzen3\\Desktop\\BeersApi\\BeersApi\\BeersApi.csproj": {
-              "projectPath": "C:\\Users\\Ryzen3\\Desktop\\BeersApi\\BeersApi\\BeersApi.csproj"
+            "C:\\Users\\Ariel\\OneDrive\\Escritorio\\BeersApi\\BeersApi\\BeersApi.csproj": {
+              "projectPath": "C:\\Users\\Ariel\\OneDrive\\Escritorio\\BeersApi\\BeersApi\\BeersApi.csproj"
             }
           }
         }
@@ -7897,7 +7897,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }

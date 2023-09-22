@@ -23,6 +23,7 @@
   <ItemGroup>
     <Folder Include="db\" />
     <Folder Include="Migrations\" />
+	<InternalsVisibleTo Include="..\BeersApi.End2End\BeersApi.End2End.csproj" />
   </ItemGroup>
 
 </Project>

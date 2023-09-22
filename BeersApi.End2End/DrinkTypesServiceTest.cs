@@ -7,18 +7,16 @@ namespace BeersApi.End2End
 {
     public class DrinkTypesServiceTest
     {
-        private readonly HttpClient _client;
+        private readonly WebApplicationFactory<Program> _appFactory;
         public DrinkTypesServiceTest()
         {
-            _client = new HttpClient()
-            {
-                BaseAddress = new Uri("http://localhost:5247")
-            };
+            _appFactory = new WebApplicationFactory<Program>();
         }
         [Fact]
         public async Task GetAllDrinksTypes()
         {
-           HttpResponseMessage response = await _client.GetAsync("/api/drinkTypes");
+           HttpClient client = _appFactory.CreateClient();
+           HttpResponseMessage response = await client.GetAsync("/api/drinkTypes");
             Assert.True((int)response.StatusCode == 200);
            
            List<DrinkTypesResponse>? list = await response.Content.ReadFromJsonAsync<List<DrinkTypesResponse>>();
