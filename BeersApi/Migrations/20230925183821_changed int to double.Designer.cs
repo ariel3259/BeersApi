@@ -3,6 +3,7 @@ using System;
 using BeersApi.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
@@ -11,36 +12,41 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeersApi.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20230915200016_modified-name")]
-    partial class modifiedname
+    [Migration("20230925183821_changed int to double")]
+    partial class changedinttodouble
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "7.0.11");
+            modelBuilder
+                .HasAnnotation("ProductVersion", "7.0.11")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("BeersApi.Models.DrinkTypes", b =>
                 {
                     b.Property<Guid>("Id")
-                        .HasColumnType("TEXT")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
                         .HasColumnName("drink_types_id");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime2")
                         .HasColumnName("created_at");
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("nvarchar(max)")
                         .HasColumnName("description");
 
                     b.Property<bool>("Status")
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("bit")
                         .HasColumnName("status");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime2")
                         .HasColumnName("updated_at");
 
                     b.HasKey("Id");
@@ -51,36 +57,37 @@ namespace BeersApi.Migrations
             modelBuilder.Entity("BeersApi.Models.Drinks", b =>
                 {
                     b.Property<Guid>("Id")
-                        .HasColumnType("TEXT")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
                         .HasColumnName("drinks_id");
 
-                    b.Property<int>("AlcoholRate")
-                        .HasColumnType("INTEGER")
+                    b.Property<double>("AlcoholRate")
+                        .HasColumnType("float")
                         .HasColumnName("alcohol_rate");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime2")
                         .HasColumnName("created_at");
 
                     b.Property<Guid>("DrinkTypeId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("uniqueidentifier")
                         .HasColumnName("drink_type_id");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("nvarchar(max)")
                         .HasColumnName("name");
 
                     b.Property<int>("Price")
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("int")
                         .HasColumnName("price");
 
                     b.Property<bool>("Status")
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("bit")
                         .HasColumnName("status");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime2")
                         .HasColumnName("updated_at");
 
                     b.HasKey("Id");

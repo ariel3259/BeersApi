@@ -1,5 +1,7 @@
 ﻿using BeersApi.Dto;
 using BeersApi.Services.Interfaces;
+using BeersApi.Validatords;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BeersApi.Controllers
@@ -27,6 +29,9 @@ namespace BeersApi.Controllers
         [HttpPost()]
         public async Task<IActionResult> Save([FromBody] DrinksRequest dto)
         {
+            DrinksRequestValidator validator = new DrinksRequestValidator();
+            ValidationResult result = validator.Validate(dto);
+            if (!result.IsValid) return BadRequest();
             DrinksResponse? drink = await _service.Save(dto);
             if (drink == null) return BadRequest();
             return Created("/api/products", drink);

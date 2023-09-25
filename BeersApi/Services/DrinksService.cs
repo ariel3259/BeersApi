@@ -58,10 +58,10 @@ namespace BeersApi.Services
         {
             DrinkTypes drinkType = await _drinkTypesRepository.GetById(dto.DrinkTypeId);
             if (drinkType == null) return null;
-            Drinks drink = new Drinks()
+            Drinks drink = new()
             {
                 Name = dto.Name,
-                AlcoholRate = dto.AlcoholRage,
+                AlcoholRate = dto.AlcoholRate,
                 DrinkTypeId = dto.DrinkTypeId,
                 Price = dto.Price
             };

@@ -5,7 +5,7 @@ namespace BeersApi.Models.Abstractions
 {
     public abstract class BaseEntity
     {
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; } = Guid.NewGuid();
         [Column("created_at")]
         public DateTime CreatedAt { get; set; } = DateTime.Now;

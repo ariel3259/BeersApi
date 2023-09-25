@@ -15,7 +15,7 @@ string? connectionString = builder.Configuration["ConnectionStrings:Dev"];
 if (connectionString == null) throw new Exception("connection string needed");
 builder.Services.AddDbContext<ApplicationContext>((options) =>
 {
-    options.UseSqlite(connectionString);
+    options.UseSqlServer(connectionString);
 },ServiceLifetime.Transient);
 
 //Add repositories
@@ -24,6 +24,7 @@ builder.Services.AddTransient<ICrudRepository<Drinks>, DrinksCrudRepository>();
 
 //Add Services
 builder.Services.AddTransient<IDrinkTypesService, DrinkTypesService>();
+builder.Services.AddTransient<IDrinksService, DrinksService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

@@ -9,7 +9,7 @@ namespace BeersApi.Models
         [Column("name")]
         public string Name { get; set; }
         [Column("alcohol_rate")]
-        public int AlcoholRate { get; set; }
+        public double AlcoholRate { get; set; }
         [Column("price")]
         public int Price { get; set; }
         [Column("drink_type_id")]
