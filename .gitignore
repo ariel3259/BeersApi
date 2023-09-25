@@ -1,2 +1,5 @@
 db/*
 !db/.gitkeep
+bin/
+obj/
+.vs/
