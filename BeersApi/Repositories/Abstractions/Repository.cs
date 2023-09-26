@@ -30,7 +30,7 @@ namespace BeersApi.Repositories.Abstractions
             };
         }
 
-        public Task<T?> GetById(Guid id)
+        public Task<T?> GetById(int id)
         {
             return _dbSet.FirstOrDefaultAsync(x => x.Id == id && x.Status);
         }

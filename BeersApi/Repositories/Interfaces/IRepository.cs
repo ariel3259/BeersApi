@@ -5,7 +5,7 @@ namespace BeersApi.Repositories.Interfaces
 {
     public interface IRepository<T> where T: BaseEntity
     {
-        public Task<T?> GetById(Guid id);
+        public Task<T?> GetById(int id);
         public Task<List<T>> GetAll();
         public Task<Pages<T>> GetAll(int? offset, int? limit);
     }

@@ -2,7 +2,7 @@
 {
     public class DrinkTypesResponse
     {
-        public Guid BeerTypesId { get; set; }
+        public int BeerTypesId { get; set; }
         public string Description { get; set; }
     }
 }

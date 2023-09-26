@@ -11,6 +11,6 @@ namespace BeersApi.Dto
         [Required]
         public int Price { get; set; }
         [Required]
-        public Guid DrinkTypeId { get; set; }
+        public int DrinkTypeId { get; set; }
     }
 }

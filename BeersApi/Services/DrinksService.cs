@@ -16,7 +16,7 @@ namespace BeersApi.Services
             _drinkTypesRepository = drinkTypesRepository;
         }
 
-        public async Task<bool> Delete(Guid id)
+        public async Task<bool> Delete(int id)
         {
             return await _drinksRepository.Delete(id);
         }
@@ -40,7 +40,7 @@ namespace BeersApi.Services
             };
         }
 
-        public async Task<DrinksResponse?> GetOne(Guid id)
+        public async Task<DrinksResponse?> GetOne(int id)
         {
             Drinks? drink = await _drinksRepository.GetById(id);
             if (drink == null) return null;
@@ -76,15 +76,15 @@ namespace BeersApi.Services
             };
         }
 
-        public async Task<DrinksResponse?> Update(DrinksUpdate dto, Guid id)
+        public async Task<DrinksResponse?> Update(DrinksUpdate dto, int id)
         {
             Drinks? drink = await _drinksRepository.GetById(id);
             if (drink == null) return null;
             if (dto.DrinkTypeId != null)
             {
-                DrinkTypes? drinkType = await _drinkTypesRepository.GetById((Guid)dto.DrinkTypeId);
+                DrinkTypes? drinkType = await _drinkTypesRepository.GetById((int)dto.DrinkTypeId);
                 if (drinkType == null) return null;
-                else drink.DrinkTypeId = dto.DrinkTypeId != drink.DrinkTypeId ? (Guid)dto.DrinkTypeId : drink.DrinkTypeId;
+                else drink.DrinkTypeId = dto.DrinkTypeId != drink.DrinkTypeId ? (int)dto.DrinkTypeId : drink.DrinkTypeId;
             }
             drink.AlcoholRate = dto.AlcoholRate != null && dto.AlcoholRate != drink.AlcoholRate ? (int)dto.AlcoholRate : drink.AlcoholRate;
             drink.Price = dto.Price != null && dto.Price != drink.Price ? (int)dto.Price : drink.Price;

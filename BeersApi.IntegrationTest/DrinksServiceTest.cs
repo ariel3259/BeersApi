@@ -13,17 +13,16 @@ using Newtonsoft.Json;
 namespace BeersApi.IntegrationTest
 {
     [Collection("drinks")]
-    public class DrinksServiceTest: IClassFixture<WebApplicationFactory<Program>>
+    public class DrinksServiceTest: IClassFixture<TestWebApplicationFactory<Program>>
     {
-        private readonly WebApplicationFactory<Program> _testFactory;
-        private Guid? _drinkToDelete;
-        public DrinksServiceTest(WebApplicationFactory<Program> testFactory)
+        private readonly TestWebApplicationFactory<Program> _testFactory;
+        public DrinksServiceTest(TestWebApplicationFactory<Program> testFactory)
         {
             _testFactory = testFactory;
         }
 
         [Fact]
-        public async Task GetAllDrinks()
+        public async Task T1_GetAllDrinks()
         {
             HttpClient client = _testFactory.CreateClient();
             HttpResponseMessage response = await client.GetAsync("/api/drinks");
@@ -35,14 +34,14 @@ namespace BeersApi.IntegrationTest
         }
 
         [Fact]
-        public async Task SaveDrinks()
+        public async Task T2_SaveDrinks()
         {
             DrinksRequest dto = new()
             {
                 Name = "Imperial Lagger",
                 AlcoholRate = 3.4,
                 Price = 500,
-                DrinkTypeId = Guid.Parse("72AA2673-8E12-4396-B632-2FBACD2F56C8")
+                DrinkTypeId = 3
             };
             HttpClient client = _testFactory.CreateClient();
             string json = JsonConvert.SerializeObject(dto);
@@ -50,18 +49,16 @@ namespace BeersApi.IntegrationTest
             HttpResponseMessage response = await client.PostAsync("/api/drinks", content);
             Assert.Equal(201, (int)response.StatusCode);
             Assert.Equal("application/json; charset=utf-8", response.Content.Headers.ContentType.ToString());
-            DrinksResponse drinksResponse = await response.Content.ReadFromJsonAsync<DrinksResponse>();
-            _drinkToDelete = drinksResponse.DrinksId;
         }
 
         [Fact]
-        public async Task SaveDrinks_Failure()
+        public async Task T3_SaveDrinks_FailArgumentRequired()
         {
             DrinksRequest dto = new()
             {
                 Name = "Imperial Lagger",
                 AlcoholRate = 3.4,
-                DrinkTypeId = Guid.Parse("72AA2673-8E12-4396-B632-2FBACD2F56C8")
+                DrinkTypeId = 3
             };
             HttpClient client = _testFactory.CreateClient();
             string json = JsonConvert.SerializeObject(dto);
@@ -71,10 +68,28 @@ namespace BeersApi.IntegrationTest
             Assert.Equal("application/problem+json; charset=utf-8", response.Content.Headers.ContentType.ToString());
         }
 
-        [Fact(Timeout = 5000)]
-        public async Task UpdateDrinks()
+        [Fact]
+        public async Task T4_SaveDrinks_Fail_DrinkTypeSelectedDoesNotExists()
         {
+            DrinksRequest dto = new()
+            {
+                Name = "Imperial Lagger",
+                AlcoholRate = 3.4,
+                Price = 500,
+                DrinkTypeId = 6
+            };
+            HttpClient client = _testFactory.CreateClient();
+            string json = JsonConvert.SerializeObject(dto);
+            StringContent content = new(json, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await client.PostAsync("/api/drinks", content);
+            Assert.Equal(400, (int)response.StatusCode);
+            Assert.Equal("application/problem+json; charset=utf-8", response.Content.Headers.ContentType.ToString());
+        }
 
+        [Fact]
+        public async Task T5_UpdateDrinks()
+        {
+            int id = 1;
             DrinksUpdate dto = new()
             {
                 AlcoholRate = 5.5
@@ -82,17 +97,61 @@ namespace BeersApi.IntegrationTest
             HttpClient client = _testFactory.CreateClient();
             string json = JsonConvert.SerializeObject(dto);
             StringContent content = new(json, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await client.PutAsync($"/api/drinks/{_drinkToDelete}", content);
+            HttpResponseMessage response = await client.PutAsync($"/api/drinks/{id}", content);
             Assert.Equal(200, (int)response.StatusCode);
             Assert.Equal("application/json; charset=utf-8", response.Content.Headers.ContentType.ToString());
         }
 
-        [Fact(Timeout = 7500)]
-        public async Task T00005_DeleteDrinks()
+        [Fact]
+        public async Task T6_UpdateDrinks_FailDrinkDoesNotExits()
         {
+            int id = 2;
+            DrinksUpdate dto = new()
+            {
+                AlcoholRate = 5.5
+            };
             HttpClient client = _testFactory.CreateClient();
-            HttpResponseMessage response = await client.DeleteAsync($"/api/drinks/{_drinkToDelete}");
+            string json = JsonConvert.SerializeObject(dto);
+            StringContent content = new(json, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await client.PutAsync($"/api/drinks/{id}", content);
+            Assert.Equal(400, (int)response.StatusCode);
+            Assert.Equal("application/problem+json; charset=utf-8", response.Content.Headers.ContentType.ToString());
+        }
+
+        [Fact]
+        public async Task T7_UpdateDrinks_FailDrinkTypeSelectedDoesNotExits()
+        {
+            int id = 1;
+            DrinksUpdate dto = new()
+            {
+                AlcoholRate = 5.5,
+                DrinkTypeId = 6
+            };
+            HttpClient client = _testFactory.CreateClient();
+            string json = JsonConvert.SerializeObject(dto);
+            StringContent content = new(json, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await client.PutAsync($"/api/drinks/{id}", content);
+            Assert.Equal(400, (int)response.StatusCode);
+            Assert.Equal("application/problem+json; charset=utf-8", response.Content.Headers.ContentType.ToString());
+        }
+
+        [Fact]
+        public async Task T9_DeleteDrinks()
+        {
+            int id = 1;
+            HttpClient client = _testFactory.CreateClient();
+            HttpResponseMessage response = await client.DeleteAsync($"/api/drinks/{id}");
             Assert.Equal(204, (int)response.StatusCode);
+        }
+
+        [Fact]
+        public async Task T9_DeleteDrinks_Failed()
+        {
+            int id = 2;
+            HttpClient client = _testFactory.CreateClient();
+            HttpResponseMessage response = await client.DeleteAsync($"/api/drinks/{id}");
+            Assert.Equal(400, (int)response.StatusCode);
+            Assert.Equal("application/problem+json; charset=utf-8", response.Content.Headers.ContentType.ToString());
         }
     }
 }

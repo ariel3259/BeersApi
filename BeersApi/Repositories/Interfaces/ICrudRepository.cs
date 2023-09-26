@@ -6,6 +6,6 @@ namespace BeersApi.Repositories.Interfaces
     {
         public Task<T> Save(T entity, CancellationToken cancellation = default);
         public Task<T> Update(T entity, CancellationToken cancellation = default);
-        public Task<bool> Delete(Guid id, CancellationToken cancellation = default);
+        public Task<bool> Delete(int id, CancellationToken cancellation = default);
     }
 }

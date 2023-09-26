@@ -21,7 +21,7 @@ namespace BeersApi.Repositories.Abstractions
             _entry = entry;
         }
 
-        public async Task<bool> Delete(Guid id, CancellationToken cancellation = default)
+        public async Task<bool> Delete(int id, CancellationToken cancellation = default)
         {
             T? entity = await _dbSet.Where(x => x.Id == id && x.Status).FirstOrDefaultAsync();
             if (entity == null) return false;
@@ -47,7 +47,7 @@ namespace BeersApi.Repositories.Abstractions
             };
         }
 
-        public async Task<T?> GetById(Guid id)
+        public async Task<T?> GetById(int id)
         {
             return await _dbSet.FirstOrDefaultAsync(x => x.Id == id && x.Status);
         }

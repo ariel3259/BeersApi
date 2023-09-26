@@ -13,7 +13,7 @@ namespace BeersApi.Models
         [Column("price")]
         public int Price { get; set; }
         [Column("drink_type_id")]
-        public Guid DrinkTypeId { get; set; }
+        public int DrinkTypeId { get; set; }
         public virtual DrinkTypes? DrinkType { get; set; }
     }
 }

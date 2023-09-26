@@ -37,16 +37,16 @@ namespace BeersApi.Controllers
             return Created("/api/products", drink);
         }
 
-        [HttpPut("{id:Guid}")]
-        public async Task<IActionResult> Update([FromBody] DrinksUpdate dto, [FromRoute(Name = "id")] Guid id)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update([FromBody] DrinksUpdate dto, [FromRoute(Name = "id")] int id)
         {
             DrinksResponse? response = await _service.Update(dto, id);
             if (response == null) return BadRequest();
             return Ok(response);
         }
 
-        [HttpDelete("{id:Guid}")]
-        public async Task<IActionResult> Delete([FromRoute(Name ="id")] Guid id)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete([FromRoute(Name ="id")] int id)
         {
             bool result = await _service.Delete(id);
             if (!result) return BadRequest();

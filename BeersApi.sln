@@ -5,9 +5,9 @@ VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeersApi", "BeersApi\BeersApi.csproj", "{82A308D2-D9CD-4F97-8EDD-523FE12A0ABC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeersApi.UnitTest", "BeersApi.UnitTest\BeersApi.UnitTest.csproj", "{B9314DCC-A825-475E-BDD6-ADC2419B6B34}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeersApi.IntegrationTest", "BeersApi.IntegrationTest\BeersApi.IntegrationTest.csproj", "{52A11B1B-6603-4542-8535-C4AAB5519172}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeersApi.IntegrationTest", "BeersApi.IntegrationTest\BeersApi.IntegrationTest.csproj", "{7732494B-F497-432F-8AF2-BCAD6700E4B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeersApi.UnitTest", "BeersApi.UnitTest\BeersApi.UnitTest.csproj", "{C2B64BD3-AFB3-4225-94E8-94DD58DF1380}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +19,14 @@ Global
 		{82A308D2-D9CD-4F97-8EDD-523FE12A0ABC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82A308D2-D9CD-4F97-8EDD-523FE12A0ABC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82A308D2-D9CD-4F97-8EDD-523FE12A0ABC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B9314DCC-A825-475E-BDD6-ADC2419B6B34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B9314DCC-A825-475E-BDD6-ADC2419B6B34}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B9314DCC-A825-475E-BDD6-ADC2419B6B34}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B9314DCC-A825-475E-BDD6-ADC2419B6B34}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7732494B-F497-432F-8AF2-BCAD6700E4B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7732494B-F497-432F-8AF2-BCAD6700E4B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7732494B-F497-432F-8AF2-BCAD6700E4B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7732494B-F497-432F-8AF2-BCAD6700E4B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52A11B1B-6603-4542-8535-C4AAB5519172}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52A11B1B-6603-4542-8535-C4AAB5519172}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52A11B1B-6603-4542-8535-C4AAB5519172}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52A11B1B-6603-4542-8535-C4AAB5519172}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2B64BD3-AFB3-4225-94E8-94DD58DF1380}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2B64BD3-AFB3-4225-94E8-94DD58DF1380}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2B64BD3-AFB3-4225-94E8-94DD58DF1380}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2B64BD3-AFB3-4225-94E8-94DD58DF1380}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

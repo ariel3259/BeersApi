@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeersApi.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20230925183821_changed int to double")]
-    partial class changedinttodouble
+    [Migration("20230926193624_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,10 +27,12 @@ namespace BeersApi.Migrations
 
             modelBuilder.Entity("BeersApi.Models.DrinkTypes", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
+                        .HasColumnType("int")
                         .HasColumnName("drink_types_id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2")
@@ -56,10 +58,12 @@ namespace BeersApi.Migrations
 
             modelBuilder.Entity("BeersApi.Models.Drinks", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
+                        .HasColumnType("int")
                         .HasColumnName("drinks_id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<double>("AlcoholRate")
                         .HasColumnType("float")
@@ -69,8 +73,8 @@ namespace BeersApi.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("created_at");
 
-                    b.Property<Guid>("DrinkTypeId")
-                        .HasColumnType("uniqueidentifier")
+                    b.Property<int>("DrinkTypeId")
+                        .HasColumnType("int")
                         .HasColumnName("drink_type_id");
 
                     b.Property<string>("Name")

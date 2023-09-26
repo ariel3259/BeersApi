@@ -5,12 +5,12 @@ using System.Net.Http.Json;
 
 namespace BeersApi.IntegrationTest
 {
-    public class DrinkTypesServiceTest : IClassFixture<WebApplicationFactory<Program>>
+    public class DrinkTypesServiceTest : IClassFixture<TestWebApplicationFactory<Program>>
     {
-        private readonly WebApplicationFactory<Program> _factory;
-        public DrinkTypesServiceTest(WebApplicationFactory<Program> testFactory)
+        private readonly TestWebApplicationFactory<Program> _testFactory;
+        public DrinkTypesServiceTest(TestWebApplicationFactory<Program> testFactory)
         {
-            _factory = testFactory;
+            _testFactory = testFactory;
         }
         [Fact]
 
@@ -18,10 +18,12 @@ namespace BeersApi.IntegrationTest
         {
            string url = "/api/drinkTypes?offset";
 
-           HttpClient client = _factory.CreateClient();
+           HttpClient client = _testFactory.CreateClient();
             HttpResponseMessage response = await client.GetAsync(url);
+            List<DrinkTypesResponse> drinkTypes = await response.Content.ReadFromJsonAsync<List<DrinkTypesResponse>>();
             Assert.Equal(200, (int)response.StatusCode);
             Assert.Equal("application/json; charset=utf-8", response.Content.Headers.ContentType.ToString());
+            Assert.Equal(5, drinkTypes.Count);
         }
     }
 }

@@ -24,7 +24,8 @@
 
   <ItemGroup>
     <Folder Include="Migrations\" />
-	<InternalsVisibleTo Include="..\BeersApi.IntegrationTest\BeersApi.IntegrationTest.csproj" />
+	  <!--<InternalsVisibleTo Include="..\BeersApi.IntegrationTest\BeersApi.IntegrationTest.csproj" />-->
+	  
   </ItemGroup>
 
 </Project>
